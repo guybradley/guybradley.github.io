@@ -12,13 +12,16 @@ This repository contains the code for the SoulCountry Digital company website, a
 - Responsive layout for all device sizes
 - Services showcase with hover effects
 - Project portfolio with technology tags
-- Contact form
+- Interactive AI chat bot with email notifications
+- Neural network background animation
 - Mobile-friendly navigation
 
 ## Structure
 
 - Simple, all-in-one HTML file with embedded CSS
-- JavaScript for mobile menu and smooth scrolling
+- JavaScript for interactive features and animations
+- API directory with serverless functions
+- Email functionality using MailerSend API
 
 ## Deployment
 

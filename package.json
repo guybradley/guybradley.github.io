@@ -9,5 +9,7 @@
   },
   "author": "SoulCountry Digital",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "mailersend": "^2.2.0"
+  }
 }
