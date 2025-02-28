@@ -7,6 +7,8 @@
     <title>SoulCountry Digital - Web Development</title>
     <!-- Import fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Canvas background library for particles -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particlesjs/2.2.3/particles.min.js"></script>
     <!-- Geist Mono direct import -->
     <style>
         @font-face {
@@ -47,6 +49,45 @@
             color: #333;
             background-color: #f5f5f5;
             letter-spacing: -0.01em; /* Slight negative letter spacing for better readability */
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* AI Background Animation */
+        #particles-js {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+        
+        /* Neural network line connectors - activated on scroll */
+        .neural-line {
+            position: fixed;
+            background: linear-gradient(90deg, transparent, rgba(79, 70, 229, 0.1), transparent);
+            height: 1px;
+            width: 100%;
+            z-index: -1;
+            transform-origin: left;
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+        }
+        
+        .neural-line.visible {
+            opacity: 1;
+            animation: vibrate 3s infinite ease-in-out;
+        }
+        
+        @keyframes vibrate {
+            0%, 100% { transform: scaleY(1); }
+            25% { transform: scaleY(1.5); }
+            50% { transform: scaleY(0.8); }
+            75% { transform: scaleY(1.2); }
         }
         
         /* Container */
@@ -582,6 +623,10 @@
     </style>
 </head>
 <body>
+    <!-- AI Background Animation Container -->
+    <div id="particles-js"></div>
+    
+    <!-- Neural network lines that will be created by JS -->
     <!-- Header -->
     <header>
         <div class="container">
@@ -751,12 +796,165 @@
             menu.classList.toggle('active');
         });
         
+        // AI Background Animation
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize particles.js
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    particles: {
+                        number: {
+                            value: 40,
+                            density: {
+                                enable: true,
+                                value_area: 800
+                            }
+                        },
+                        color: {
+                            value: '#7c3aed'
+                        },
+                        shape: {
+                            type: 'circle',
+                            stroke: {
+                                width: 0,
+                                color: '#000000'
+                            },
+                        },
+                        opacity: {
+                            value: 0.2,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 0.5,
+                                opacity_min: 0.1,
+                                sync: false
+                            }
+                        },
+                        size: {
+                            value: 3,
+                            random: true,
+                            anim: {
+                                enable: true,
+                                speed: 2,
+                                size_min: 0.3,
+                                sync: false
+                            }
+                        },
+                        line_linked: {
+                            enable: true,
+                            distance: 150,
+                            color: '#7c3aed',
+                            opacity: 0.1,
+                            width: 1
+                        },
+                        move: {
+                            enable: true,
+                            speed: 0.5,
+                            direction: 'none',
+                            random: true,
+                            straight: false,
+                            out_mode: 'out',
+                            bounce: false,
+                            attract: {
+                                enable: true,
+                                rotateX: 600,
+                                rotateY: 1200
+                            }
+                        }
+                    },
+                    interactivity: {
+                        detect_on: 'canvas',
+                        events: {
+                            onhover: {
+                                enable: true,
+                                mode: 'bubble'
+                            },
+                            onclick: {
+                                enable: true,
+                                mode: 'push'
+                            },
+                            resize: true
+                        },
+                        modes: {
+                            bubble: {
+                                distance: 100,
+                                size: 6,
+                                duration: 2,
+                                opacity: 0.3,
+                                speed: 3
+                            },
+                            push: {
+                                particles_nb: 3
+                            }
+                        }
+                    },
+                    retina_detect: true
+                });
+            }
+            
+            // Create neural network lines
+            createNeuralLines();
+        });
+        
+        // Create neural network lines that will animate on scroll
+        function createNeuralLines() {
+            const linesContainer = document.createElement('div');
+            linesContainer.id = 'neural-lines-container';
+            document.body.appendChild(linesContainer);
+            
+            // Create 20 lines at random positions
+            for (let i = 0; i < 20; i++) {
+                const line = document.createElement('div');
+                line.className = 'neural-line';
+                line.style.top = Math.random() * 100 + 'vh';
+                line.style.animationDelay = Math.random() * 2 + 's';
+                line.style.height = (Math.random() * 1 + 0.5) + 'px';
+                linesContainer.appendChild(line);
+            }
+            
+            // Show/hide lines based on scroll position
+            updateLinesVisibility();
+        }
+        
+        // Update neural lines visibility based on scroll
+        function updateLinesVisibility() {
+            const lines = document.querySelectorAll('.neural-line');
+            const scrollY = window.scrollY;
+            const windowHeight = window.innerHeight;
+            const docHeight = document.documentElement.scrollHeight;
+            const scrollPercent = scrollY / (docHeight - windowHeight);
+            
+            lines.forEach((line, index) => {
+                // Different activation points for each line
+                const activationPoint = index / lines.length;
+                const distance = Math.abs(scrollPercent - activationPoint);
+                
+                // Make line visible when scroll is near its activation point
+                if (distance < 0.2) {
+                    line.classList.add('visible');
+                    line.style.opacity = 1 - (distance * 5); // Fade based on distance
+                } else {
+                    line.classList.remove('visible');
+                }
+            });
+        }
+        
         // Header scroll effect
         window.addEventListener('scroll', function() {
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
+            }
+            
+            // Update neural lines
+            updateLinesVisibility();
+            
+            // Modify particles opacity based on scroll
+            const scrollY = window.scrollY;
+            const particlesEl = document.getElementById('particles-js');
+            if (particlesEl) {
+                const opacity = Math.max(0.1, 0.5 - (scrollY / 2000));
+                particlesEl.style.opacity = opacity.toString();
             }
         });
         
@@ -822,12 +1020,16 @@
             // Start the chat sequence when page loads
             window.addEventListener('load', function() {
                 setTimeout(function() {
-                    addBotMessage(chatSequence[0].question);
+                    if (chatBody) {
+                        addBotMessage(chatSequence[0].question);
+                    }
                 }, 1000);
             });
             
             // Add a bot message to the chat
             function addBotMessage(message) {
+                if (!chatBody) return;
+                
                 // Replace placeholders with user data
                 for (const [key, value] of Object.entries(userData)) {
                     message = message.replace(`{${key}}`, value);
@@ -858,6 +1060,8 @@
             
             // Add a user message to the chat
             function addUserMessage(message) {
+                if (!chatBody) return;
+                
                 const userMessage = document.createElement('div');
                 userMessage.className = 'chat-message user-message';
                 userMessage.textContent = message;
@@ -867,6 +1071,8 @@
             
             // Process user input and advance in the sequence
             function processInput() {
+                if (!userInput || !chatBody || !sendButton) return;
+                
                 const message = userInput.value.trim();
                 if (message === '') return;
                 
@@ -898,14 +1104,18 @@
             }
             
             // Handle send button click
-            sendButton.addEventListener('click', processInput);
+            if (sendButton) {
+                sendButton.addEventListener('click', processInput);
+            }
             
             // Handle enter key press
-            userInput.addEventListener('keypress', function(e) {
-                if (e.key === 'Enter') {
-                    processInput();
-                }
-            });
+            if (userInput) {
+                userInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        processInput();
+                    }
+                });
+            }
         });
     </script>
 </body>
