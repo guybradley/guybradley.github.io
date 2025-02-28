@@ -663,6 +663,129 @@
             color: #999;
         }
         
+        /* Login Modal Styles */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        
+        .login-modal-content {
+            position: relative;
+            background-color: #fff;
+            margin: 10vh auto;
+            padding: 30px;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 5px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .login-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #555;
+            transition: color 0.3s;
+        }
+        
+        .login-close:hover {
+            color: #000;
+        }
+        
+        .login-modal h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: #000;
+            text-align: center;
+            letter-spacing: -0.02em;
+            font-weight: 700;
+        }
+        
+        .login-form-group {
+            margin-bottom: 20px;
+        }
+        
+        .login-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            color: #333;
+            font-weight: 500;
+        }
+        
+        .login-form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            font-family: inherit;
+            font-size: 14px;
+            letter-spacing: -0.01em;
+            background-color: #f9f9f9;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        .login-form-group input:focus {
+            outline: none;
+            border-color: #000;
+            box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+        }
+        
+        .login-error {
+            color: #e53935;
+            font-size: 14px;
+            margin: 10px 0;
+            min-height: 20px;
+            font-weight: 500;
+        }
+        
+        .login-form-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 25px;
+        }
+        
+        .login-button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 3px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 14px;
+            letter-spacing: -0.01em;
+            font-family: inherit;
+        }
+        
+        .login-button:hover {
+            background-color: #333;
+        }
+        
+        .login-forgot {
+            color: #555;
+            font-size: 13px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .login-forgot:hover {
+            color: #000;
+            text-decoration: underline;
+        }
+        
         /* Mobile menu */
         .mobile-menu-btn {
             display: none;
@@ -741,6 +864,7 @@
                         <li><a href="#services">Services</a></li>
                         <li><a href="#projects">Projects</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="#" id="login-button">Client Login</a></li>
                     </ul>
                 </nav>
             </div>
@@ -1819,6 +1943,102 @@
                 }, 2000);
             }
         });
+    </script>
+    
+    <!-- Login Modal -->
+    <div id="login-modal" class="login-modal">
+        <div class="login-modal-content">
+            <span class="login-close">&times;</span>
+            <h2>Client Login</h2>
+            <form id="login-form">
+                <div class="login-form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required autocomplete="username">
+                </div>
+                <div class="login-form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required autocomplete="current-password">
+                </div>
+                <div id="login-error" class="login-error"></div>
+                <div class="login-form-actions">
+                    <button type="button" id="login-submit" class="login-button">Log In</button>
+                    <a href="#" class="login-forgot">Forgot Password?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <script>
+        // Login Modal Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initLoginModal();
+        });
+        
+        function initLoginModal() {
+            const modal = document.getElementById('login-modal');
+            const loginButton = document.getElementById('login-button');
+            const closeButton = document.querySelector('.login-close');
+            const loginForm = document.getElementById('login-form');
+            const loginSubmit = document.getElementById('login-submit');
+            const loginError = document.getElementById('login-error');
+            const usernameInput = document.getElementById('username');
+            const passwordInput = document.getElementById('password');
+            const forgotLink = document.querySelector('.login-forgot');
+            
+            if (!modal || !loginButton) return;
+            
+            // Show the modal when login button is clicked
+            loginButton.addEventListener('click', function(e) {
+                e.preventDefault();
+                modal.style.display = 'block';
+                usernameInput.focus();
+                
+                // Reset form
+                loginForm.reset();
+                loginError.textContent = '';
+            });
+            
+            // Close the modal when close button is clicked
+            closeButton.addEventListener('click', function() {
+                modal.style.display = 'none';
+            });
+            
+            // Close the modal when clicking outside the modal content
+            window.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Handle the form submission (always show error for now)
+            loginSubmit.addEventListener('click', function() {
+                // Validate form
+                if (!usernameInput.value || !passwordInput.value) {
+                    loginError.textContent = 'Please enter both username and password.';
+                    return;
+                }
+                
+                // Show the error message (as requested, always show this for now)
+                loginError.textContent = 'Invalid credentials entered. Please try again.';
+                
+                // Clear password field for security
+                passwordInput.value = '';
+            });
+            
+            // Handle "forgot password" link
+            forgotLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginError.textContent = 'Please contact the administrator to reset your password.';
+            });
+            
+            // Allow pressing Enter to submit
+            loginForm.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    loginSubmit.click();
+                }
+            });
+        }
     </script>
 </body>
 </html>
