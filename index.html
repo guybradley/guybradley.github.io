@@ -199,6 +199,13 @@
             z-index: 1;
         }
         
+        .hero {
+            /* Background color as fallback until image/video loads */
+            background-color: #1a1a1a; 
+            background-size: cover;
+            background-position: center;
+        }
+        
         .hero-video {
             position: absolute;
             top: 50%;
@@ -742,7 +749,7 @@
 
     <!-- Hero Section -->
     <section class="hero">
-        <video class="hero-video" autoplay muted loop playsinline>
+        <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="images/hero-placeholder.jpg">
             <source src="video/kokerboom.mp4" type="video/mp4">
             <!-- Fallback for browsers that don't support video -->
             Your browser does not support the video tag.
