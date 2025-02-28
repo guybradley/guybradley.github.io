@@ -206,6 +206,19 @@
             background-position: center;
         }
         
+        /* Hero placeholder image */
+        .hero-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        
         .hero-video {
             position: absolute;
             top: 50%;
@@ -217,6 +230,12 @@
             transform: translateX(-50%) translateY(-50%);
             z-index: 0;
             object-fit: cover;
+            opacity: 0; /* Start with video hidden */
+            transition: opacity 1s ease;
+        }
+        
+        .hero-video.loaded {
+            opacity: 1; /* Show video when loaded */
         }
         
         .hero-content {
@@ -873,6 +892,8 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <!-- Add a placeholder image that will show until the video loads -->
+        <img src="images/hero_placeholder.jpg" alt="SoulCountry Digital Hero" class="hero-placeholder">
         <video class="hero-video" autoplay muted loop playsinline preload="auto">
             <source src="video/kokerboom.mp4" type="video/mp4">
             <!-- Fallback for browsers that don't support video -->
@@ -1274,9 +1295,24 @@
             });
         });
         
-        // Make sure video plays on mobile devices
+        // Make sure video plays on mobile devices and handle placeholder transition
         const video = document.querySelector('.hero-video');
+        const placeholder = document.querySelector('.hero-placeholder');
+        
         if (video) {
+            // When video can play, fade out placeholder and fade in video
+            video.addEventListener('canplay', function() {
+                video.classList.add('loaded');
+                if (placeholder) {
+                    placeholder.style.opacity = 0;
+                    
+                    // Remove placeholder from DOM after transition completes
+                    setTimeout(() => {
+                        placeholder.style.display = 'none';
+                    }, 1000);
+                }
+            });
+            
             // Some browsers require user interaction to start videos
             // This is a workaround to try to ensure the video plays
             document.addEventListener('touchstart', function() {
@@ -1800,6 +1836,7 @@
             if (userInput) {
                 userInput.addEventListener('keypress', function(e) {
                     if (e.key === 'Enter') {
+                        e.preventDefault();
                         processInput();
                     }
                 });
