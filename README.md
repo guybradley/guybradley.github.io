@@ -1,6 +1,6 @@
-# Quivertree Digital - Company Website
+# SoulCountry Digital - Company Website
 
-This repository contains the code for the Quivertree Digital company website, a web development company. The site is a minimalist single-page website built with:
+This repository contains the code for the SoulCountry Digital company website, a web development company. The site is a minimalist single-page website built with:
 
 - HTML5
 - CSS3
@@ -26,4 +26,4 @@ The website is deployed using GitHub Pages and can be accessed at the associated
 
 ## License
 
-Copyright © 2024 Quivertree Digital. All rights reserved.
+Copyright © 2024 SoulCountry Digital. All rights reserved.
