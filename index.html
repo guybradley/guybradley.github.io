@@ -8,44 +8,97 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzRmNDZlNSIgZD0iTTEyIDJsOS41IDUuNXYxMkwxMiAyNWwtOS41LTUuNXYtMTJMMTIgMnptMCAyLjMxMUw0LjUgOC41djdsMy41IDJWMTFsNC01LjUgNC41IDIuNXY3LjVMMjAgMTUuNXYtN0wxMiA0LjMxMXoiLz48L3N2Zz4=">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/styles.css?v=1.0.1">
-    <!-- Fallback styles in case the CSS file doesn't load -->
+    <link rel="stylesheet" href="assets/css/styles.css?v=1.0.3">
+    <!-- Alternative CSS paths in case the primary one fails -->
+    <link rel="stylesheet" href="../assets/css/styles.css?v=1.0.3">
+    <link rel="stylesheet" href="/assets/css/styles.css?v=1.0.3">
+    <!-- Complete embedded CSS styles -->
     <style>
-        .gradient-bg {
-            background: linear-gradient(90deg, #2563eb, #7c3aed) !important;
-        }
-        .service-card:hover {
-            transform: translateY(-5px) !important;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-            transition: all 0.3s ease !important;
-        }
-        .slide-in {
-            animation: slideIn 0.5s ease-out !important;
-        }
-        @keyframes slideIn {
-            0% { transform: translateY(20px); opacity: 0; }
-            100% { transform: translateY(0); opacity: 1; }
-        }
-        /* Mobile menu styles */
-        @media (max-width: 768px) {
-            .mobile-menu-button {
-                display: block !important;
-            }
-            .mobile-menu {
-                display: none !important;
-            }
-            .mobile-menu.active {
-                display: block !important;
-                position: absolute !important;
-                top: 100% !important;
-                left: 0 !important;
-                right: 0 !important;
-                background-color: white !important;
-                padding: 1rem !important;
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-                z-index: 20 !important;
-            }
-        }
+/* Custom styles for Quivertree Digital */
+
+html body .gradient-bg, .gradient-bg {
+    background: linear-gradient(90deg, #2563eb, #7c3aed) !important;
+}
+
+html body .service-card:hover, .service-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
+}
+
+html body .slide-in, .slide-in {
+    animation: slideIn 0.5s ease-out !important;
+}
+
+@keyframes slideIn {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Mobile menu styles */
+@media (max-width: 768px) {
+    html body .mobile-menu-button, .mobile-menu-button {
+        display: block !important;
+    }
+    
+    html body .mobile-menu, .mobile-menu {
+        display: none !important;
+    }
+    
+    html body .mobile-menu.active, .mobile-menu.active {
+        display: block !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        background-color: white !important;
+        padding: 1rem !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+        z-index: 20 !important;
+    }
+}
+
+/* Hover effects */
+html body .hover-up, .hover-up {
+    transition: transform 0.3s ease !important;
+}
+
+html body .hover-up:hover, .hover-up:hover {
+    transform: translateY(-5px) !important;
+}
+
+/* Custom button styles */
+html body .custom-button, .custom-button {
+    transition: all 0.3s ease !important;
+}
+
+html body .custom-button:hover, .custom-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
+}
+
+/* Timeline animation */
+html body .timeline-item, .timeline-item {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: all 0.6s ease !important;
+}
+
+html body .timeline-item.visible, .timeline-item.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+/* Image overlay effects */
+html body .project-card:hover .project-overlay, .project-card:hover .project-overlay {
+    opacity: 1 !important;
+}
+
+html body .project-overlay, .project-overlay {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    background: rgba(79, 70, 229, 0.9) !important;
+}
     </style>
 </head>
 <body class="font-sans text-gray-800 antialiased">
@@ -566,6 +619,68 @@
         
         // Initial check
         window.addEventListener('load', checkVisibility);
+        
+        // Apply styles directly via JavaScript as a fallback
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if CSS is loaded
+            const styleSheets = document.styleSheets;
+            let cssLoaded = false;
+            
+            for (let i = 0; i < styleSheets.length; i++) {
+                if (styleSheets[i].href && styleSheets[i].href.includes('styles.css')) {
+                    cssLoaded = true;
+                    break;
+                }
+            }
+            
+            if (!cssLoaded) {
+                console.log('CSS not loaded, applying fallback styles');
+                
+                // Apply gradient background
+                const gradientBgElements = document.querySelectorAll('.gradient-bg');
+                gradientBgElements.forEach(el => {
+                    el.style.background = 'linear-gradient(90deg, #2563eb, #7c3aed)';
+                });
+                
+                // Apply service card hover effects
+                const serviceCards = document.querySelectorAll('.service-card');
+                serviceCards.forEach(card => {
+                    card.addEventListener('mouseenter', function() {
+                        this.style.transform = 'translateY(-5px)';
+                        this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
+                        this.style.transition = 'all 0.3s ease';
+                    });
+                    card.addEventListener('mouseleave', function() {
+                        this.style.transform = 'translateY(0)';
+                        this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                    });
+                });
+                
+                // Handle mobile menu
+                const mobileMenu = document.getElementById('mobileMenu');
+                const mobileMenuButton = document.getElementById('mobileMenuButton');
+                
+                if (mobileMenu && mobileMenuButton) {
+                    mobileMenu.style.display = 'none';
+                    
+                    mobileMenuButton.addEventListener('click', function() {
+                        if (mobileMenu.style.display === 'none') {
+                            mobileMenu.style.display = 'block';
+                            mobileMenu.style.position = 'absolute';
+                            mobileMenu.style.top = '100%';
+                            mobileMenu.style.left = '0';
+                            mobileMenu.style.right = '0';
+                            mobileMenu.style.backgroundColor = 'white';
+                            mobileMenu.style.padding = '1rem';
+                            mobileMenu.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
+                            mobileMenu.style.zIndex = '20';
+                        } else {
+                            mobileMenu.style.display = 'none';
+                        }
+                    });
+                }
+            }
+        });
     </script>
 </body>
 </html>
