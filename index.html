@@ -3,462 +3,447 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Quivertree Digital - Custom web and software development services tailored to your business needs">
-    <title>Quivertree Digital - Web & Software Development</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzRmNDZlNSIgZD0iTTEyIDJsOS41IDUuNXYxMkwxMiAyNWwtOS41LTUuNXYtMTJMMTIgMnptMCAyLjMxMUw0LjUgOC41djdsMy41IDJWMTFsNC01LjUgNC41IDIuNXY3LjVMMjAgMTUuNXYtN0wxMiA0LjMxMXoiLz48L3N2Zz4=">
-    <link href="https://cdn.tailwindcss.com" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css?v=1.0.3">
-    <!-- Alternative CSS paths in case the primary one fails -->
-    <link rel="stylesheet" href="../assets/css/styles.css?v=1.0.3">
-    <link rel="stylesheet" href="/assets/css/styles.css?v=1.0.3">
-    <!-- Complete embedded CSS styles -->
+    <title>Quivertree Digital - Web Development</title>
     <style>
-/* Custom styles for Quivertree Digital */
-
-html body .gradient-bg, .gradient-bg {
-    background: linear-gradient(90deg, #2563eb, #7c3aed) !important;
-}
-
-html body .service-card:hover, .service-card:hover {
-    transform: translateY(-5px) !important;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
-    transition: all 0.3s ease !important;
-}
-
-html body .slide-in, .slide-in {
-    animation: slideIn 0.5s ease-out !important;
-}
-
-@keyframes slideIn {
-    0% { transform: translateY(20px); opacity: 0; }
-    100% { transform: translateY(0); opacity: 1; }
-}
-
-/* Mobile menu styles */
-@media (max-width: 768px) {
-    html body .mobile-menu-button, .mobile-menu-button {
-        display: block !important;
-    }
-    
-    html body .mobile-menu, .mobile-menu {
-        display: none !important;
-    }
-    
-    html body .mobile-menu.active, .mobile-menu.active {
-        display: block !important;
-        position: absolute !important;
-        top: 100% !important;
-        left: 0 !important;
-        right: 0 !important;
-        background-color: white !important;
-        padding: 1rem !important;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
-        z-index: 20 !important;
-    }
-}
-
-/* Hover effects */
-html body .hover-up, .hover-up {
-    transition: transform 0.3s ease !important;
-}
-
-html body .hover-up:hover, .hover-up:hover {
-    transform: translateY(-5px) !important;
-}
-
-/* Custom button styles */
-html body .custom-button, .custom-button {
-    transition: all 0.3s ease !important;
-}
-
-html body .custom-button:hover, .custom-button:hover {
-    transform: translateY(-2px) !important;
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
-}
-
-/* Timeline animation */
-html body .timeline-item, .timeline-item {
-    opacity: 0 !important;
-    transform: translateY(20px) !important;
-    transition: all 0.6s ease !important;
-}
-
-html body .timeline-item.visible, .timeline-item.visible {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-/* Image overlay effects */
-html body .project-card:hover .project-overlay, .project-card:hover .project-overlay {
-    opacity: 1 !important;
-}
-
-html body .project-overlay, .project-overlay {
-    opacity: 0 !important;
-    transition: opacity 0.3s ease !important;
-    background: rgba(79, 70, 229, 0.9) !important;
-}
+        /* Basic reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-weight: bold;
+            font-size: 24px;
+            color: #000;
+            text-decoration: none;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #000;
+        }
+        
+        /* Hero section */
+        .hero {
+            padding: 150px 0 100px;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+        
+        .hero p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+            color: #555;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #000;
+            color: #fff;
+            padding: 12px 30px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #333;
+        }
+        
+        /* Services section */
+        .services {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            color: #000;
+            margin-bottom: 10px;
+        }
+        
+        .section-title p {
+            color: #555;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .card {
+            background-color: #f9f9f9;
+            border-radius: 4px;
+            padding: 30px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .card h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #000;
+        }
+        
+        .card p {
+            color: #555;
+        }
+        
+        /* Projects section */
+        .projects {
+            padding: 100px 0;
+            background-color: #f5f5f5;
+        }
+        
+        .project {
+            background-color: #fff;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .project-img {
+            height: 200px;
+            background-color: #eee;
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        
+        .project p {
+            color: #555;
+            margin-bottom: 15px;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .tag {
+            background-color: #f0f0f0;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #555;
+        }
+        
+        /* Contact section */
+        .contact {
+            padding: 100px 0;
+            background-color: #fff;
+        }
+        
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 16px;
+        }
+        
+        textarea {
+            height: 150px;
+        }
+        
+        button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #333;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #000;
+            color: #fff;
+            padding: 60px 0;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        
+        .footer-col {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-col h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: #fff;
+        }
+        
+        .copyright {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+            margin-top: 40px;
+            text-align: center;
+            color: #999;
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #000;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav ul {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #fff;
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            }
+            
+            nav ul.active {
+                display: flex;
+            }
+            
+            nav ul li {
+                margin: 10px 0;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero p {
+                font-size: 16px;
+            }
+            
+            .section-title h2 {
+                font-size: 28px;
+            }
+        }
     </style>
 </head>
-<body class="font-sans text-gray-800 antialiased">
+<body>
     <!-- Header -->
-    <header class="relative bg-white shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4 md:justify-start md:space-x-10">
-                <div class="flex justify-start lg:w-0 lg:flex-1">
-                    <a href="#" class="flex items-center">
-                        <span class="sr-only">Quivertree Digital</span>
-                        <span class="text-2xl font-bold text-indigo-600">Quivertree Digital</span>
-                    </a>
-                </div>
-                
-                <!-- Mobile menu button -->
-                <div class="md:hidden">
-                    <button type="button" id="mobileMenuButton" class="mobile-menu-button text-gray-500 hover:text-gray-600 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500">
-                        <span class="sr-only">Open menu</span>
-                        <i class="fas fa-bars text-xl"></i>
-                    </button>
-                </div>
-                
-                <!-- Desktop menu -->
-                <nav class="hidden md:flex space-x-10">
-                    <a href="#services" class="text-base font-medium text-gray-700 hover:text-indigo-600">Services</a>
-                    <a href="#projects" class="text-base font-medium text-gray-700 hover:text-indigo-600">Projects</a>
-                    <a href="#process" class="text-base font-medium text-gray-700 hover:text-indigo-600">Process</a>
-                    <a href="#testimonials" class="text-base font-medium text-gray-700 hover:text-indigo-600">Testimonials</a>
+    <header>
+        <div class="container">
+            <div class="header-inner">
+                <a href="#" class="logo">Quivertree Digital</a>
+                <button class="mobile-menu-btn">☰</button>
+                <nav>
+                    <ul id="menu">
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
                 </nav>
-                <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0">
-                    <a href="#contact" class="ml-8 whitespace-nowrap inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700 custom-button">
-                        Contact Us
-                    </a>
-                </div>
-            </div>
-            
-            <!-- Mobile menu -->
-            <div class="mobile-menu md:hidden" id="mobileMenu">
-                <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-                    <a href="#services" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Services</a>
-                    <a href="#projects" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Projects</a>
-                    <a href="#process" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Process</a>
-                    <a href="#testimonials" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Testimonials</a>
-                    <a href="#contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-indigo-600 hover:bg-gray-50">Contact</a>
-                </div>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section class="gradient-bg">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 md:pr-10">
-                    <h1 class="text-4xl font-extrabold tracking-tight text-white sm:text-5xl md:text-6xl">
-                        <span class="block xl:inline">Digital solutions that</span>
-                        <span class="block text-indigo-200 xl:inline">elevate your business</span>
-                    </h1>
-                    <p class="mt-3 max-w-md mx-auto text-lg text-indigo-100 sm:text-xl md:mt-5 md:max-w-3xl">
-                        Custom web and software development services tailored to your business needs. We build innovative digital solutions that help you grow.
-                    </p>
-                    <div class="mt-10 sm:flex">
-                        <div class="rounded-md shadow">
-                            <a href="#contact" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
-                                Get Started
-                            </a>
-                        </div>
-                        <div class="mt-3 sm:mt-0 sm:ml-3">
-                            <a href="#services" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-indigo-500 bg-opacity-60 hover:bg-opacity-70 md:py-4 md:text-lg md:px-10">
-                                Learn More
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="md:w-1/2 mt-10 md:mt-0">
-                    <img class="h-56 w-full object-cover sm:h-72 md:h-96 lg:h-full lg:w-full rounded-lg shadow-xl" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2850&q=80" alt="Team working on code">
-                </div>
-            </div>
+    <section class="hero">
+        <div class="container">
+            <h1>Web Development Solutions</h1>
+            <p>Custom software and web development services tailored to your business needs. We build elegant, functional solutions that help you grow.</p>
+            <a href="#contact" class="btn">Get Started</a>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Services</h2>
-                <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">What We Offer</p>
-                <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">Comprehensive software solutions for businesses of all sizes.</p>
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>We provide comprehensive web and software development services to help businesses thrive in the digital landscape.</p>
             </div>
-
-            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Service 1 -->
-                <div class="bg-white rounded-lg shadow-md p-6 transition-all duration-300 service-card">
-                    <div class="text-indigo-600 mb-4">
-                        <i class="fas fa-laptop-code text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Web Development</h3>
-                    <p class="mt-3 text-gray-500">Custom websites and web applications built with the latest technologies to ensure performance and scalability.</p>
+            <div class="cards">
+                <div class="card">
+                    <h3>Web Development</h3>
+                    <p>Custom websites and web applications built with the latest technologies to ensure performance, scalability, and user experience.</p>
                 </div>
-
-                <!-- Service 2 -->
-                <div class="bg-white rounded-lg shadow-md p-6 transition-all duration-300 service-card">
-                    <div class="text-indigo-600 mb-4">
-                        <i class="fas fa-mobile-alt text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Mobile App Development</h3>
-                    <p class="mt-3 text-gray-500">Native and cross-platform mobile applications for iOS and Android that deliver exceptional user experiences.</p>
+                <div class="card">
+                    <h3>Mobile Development</h3>
+                    <p>Native and cross-platform mobile applications for iOS and Android that deliver exceptional user experiences and functionality.</p>
                 </div>
-
-                <!-- Service 3 -->
-                <div class="bg-white rounded-lg shadow-md p-6 transition-all duration-300 service-card">
-                    <div class="text-indigo-600 mb-4">
-                        <i class="fas fa-server text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Backend Development</h3>
-                    <p class="mt-3 text-gray-500">Robust server-side solutions with secure APIs, database design, and cloud infrastructure setup.</p>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="bg-white rounded-lg shadow-md p-6 transition-all duration-300 service-card">
-                    <div class="text-indigo-600 mb-4">
-                        <i class="fas fa-desktop text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">UI/UX Design</h3>
-                    <p class="mt-3 text-gray-500">User-centered design that focuses on creating intuitive and engaging digital experiences.</p>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="bg-white rounded-lg shadow-md p-6 transition-all duration-300 service-card">
-                    <div class="text-indigo-600 mb-4">
-                        <i class="fas fa-cogs text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">DevOps</h3>
-                    <p class="mt-3 text-gray-500">Streamlined deployment processes, continuous integration, and infrastructure management.</p>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="bg-white rounded-lg shadow-md p-6 transition-all duration-300 service-card">
-                    <div class="text-indigo-600 mb-4">
-                        <i class="fas fa-chart-line text-3xl"></i>
-                    </div>
-                    <h3 class="text-xl font-bold text-gray-900">Digital Strategy</h3>
-                    <p class="mt-3 text-gray-500">Technical consulting and strategy to help you leverage technology for business growth.</p>
+                <div class="card">
+                    <h3>UI/UX Design</h3>
+                    <p>User-centered design that focuses on creating intuitive, engaging, and accessible digital experiences for your customers.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Projects</h2>
-                <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">Our Recent Work</p>
-                <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">Delivering exceptional digital solutions for our clients.</p>
+    <section id="projects" class="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Recent Projects</h2>
+                <p>A selection of our recent work delivering exceptional digital solutions.</p>
             </div>
-
-            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Project 1 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
-                    <div class="h-48 bg-gray-200">
-                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="E-commerce project">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900">E-commerce Platform</h3>
-                        <p class="mt-2 text-gray-500">Custom online store with inventory management, payment processing, and analytics dashboard.</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">React</span>
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">Node.js</span>
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">MongoDB</span>
+            <div class="cards">
+                <div class="project">
+                    <div class="project-img"></div>
+                    <div class="project-content">
+                        <h3>E-commerce Platform</h3>
+                        <p>Custom online store with inventory management, payment processing, and analytics dashboard.</p>
+                        <div class="project-tags">
+                            <span class="tag">React</span>
+                            <span class="tag">Node.js</span>
+                            <span class="tag">MongoDB</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 2 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
-                    <div class="h-48 bg-gray-200">
-                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Mobile app project">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900">Health & Fitness App</h3>
-                        <p class="mt-2 text-gray-500">Mobile application for tracking workouts, nutrition, and health metrics with social features.</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">Flutter</span>
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">Firebase</span>
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">GraphQL</span>
+                <div class="project">
+                    <div class="project-img"></div>
+                    <div class="project-content">
+                        <h3>Health & Fitness App</h3>
+                        <p>Mobile application for tracking workouts, nutrition, and health metrics with social features.</p>
+                        <div class="project-tags">
+                            <span class="tag">Flutter</span>
+                            <span class="tag">Firebase</span>
+                            <span class="tag">GraphQL</span>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 3 -->
-                <div class="bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 hover:shadow-xl">
-                    <div class="h-48 bg-gray-200">
-                        <img class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1531403009284-440f080d1e12?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="SaaS project">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-bold text-gray-900">Project Management SaaS</h3>
-                        <p class="mt-2 text-gray-500">Complete project management solution with task tracking, team collaboration, and reporting tools.</p>
-                        <div class="mt-4 flex flex-wrap gap-2">
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">Vue.js</span>
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">Django</span>
-                            <span class="px-2 py-1 text-xs font-medium bg-indigo-100 text-indigo-800 rounded">PostgreSQL</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Process Section -->
-    <section id="process" class="py-16 bg-gray-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Process</h2>
-                <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">How We Work</p>
-                <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">A proven development methodology that delivers results.</p>
-            </div>
-
-            <div class="mt-16">
-                <div class="relative">
-                    <!-- Timeline line -->
-                    <div class="hidden md:block absolute top-0 left-1/2 w-0.5 h-full bg-gray-200 transform -translate-x-1/2"></div>
-
-                    <!-- Step 1 -->
-                    <div class="relative md:flex items-center mb-16">
-                        <div class="md:w-1/2 md:pr-8 md:text-right">
-                            <div class="bg-white p-6 rounded-lg shadow-md slide-in">
-                                <h3 class="text-xl font-bold text-indigo-600">Discovery</h3>
-                                <p class="mt-2 text-gray-600">We begin by understanding your business, goals, and requirements through in-depth discussions and research.</p>
-                            </div>
-                        </div>
-                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-                            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">1</div>
-                        </div>
-                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0"></div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="relative md:flex items-center mb-16">
-                        <div class="md:w-1/2 md:pr-8"></div>
-                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-                            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">2</div>
-                        </div>
-                        <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white p-6 rounded-lg shadow-md slide-in">
-                                <h3 class="text-xl font-bold text-indigo-600">Planning & Design</h3>
-                                <p class="mt-2 text-gray-600">We create detailed specifications, wireframes, and designs to visualize the solution before development begins.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="relative md:flex items-center mb-16">
-                        <div class="md:w-1/2 md:pr-8 md:text-right">
-                            <div class="bg-white p-6 rounded-lg shadow-md slide-in">
-                                <h3 class="text-xl font-bold text-indigo-600">Development</h3>
-                                <p class="mt-2 text-gray-600">Our expert team builds your solution using agile methodologies, with regular updates and demonstrations.</p>
-                            </div>
-                        </div>
-                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-                            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">3</div>
-                        </div>
-                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0"></div>
-                    </div>
-
-                    <!-- Step 4 -->
-                    <div class="relative md:flex items-center mb-16">
-                        <div class="md:w-1/2 md:pr-8"></div>
-                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-                            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">4</div>
-                        </div>
-                        <div class="md:w-1/2 md:pl-8">
-                            <div class="bg-white p-6 rounded-lg shadow-md slide-in">
-                                <h3 class="text-xl font-bold text-indigo-600">Testing & Quality Assurance</h3>
-                                <p class="mt-2 text-gray-600">Comprehensive testing ensures your solution is reliable, secure, and performs optimally in all scenarios.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Step 5 -->
-                    <div class="relative md:flex items-center">
-                        <div class="md:w-1/2 md:pr-8 md:text-right">
-                            <div class="bg-white p-6 rounded-lg shadow-md slide-in">
-                                <h3 class="text-xl font-bold text-indigo-600">Launch & Support</h3>
-                                <p class="mt-2 text-gray-600">We deploy your solution and provide ongoing support, maintenance, and future enhancements as needed.</p>
-                            </div>
-                        </div>
-                        <div class="hidden md:block absolute left-1/2 transform -translate-x-1/2 -translate-y-4">
-                            <div class="w-8 h-8 rounded-full bg-indigo-600 text-white flex items-center justify-center">5</div>
-                        </div>
-                        <div class="md:w-1/2 md:pl-8 mt-6 md:mt-0"></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-base font-semibold text-indigo-600 tracking-wide uppercase">Testimonials</h2>
-                <p class="mt-1 text-4xl font-extrabold text-gray-900 sm:text-5xl sm:tracking-tight">What Our Clients Say</p>
-                <p class="max-w-xl mt-5 mx-auto text-xl text-gray-500">Don't just take our word for it - hear from some of our satisfied clients.</p>
-            </div>
-
-            <div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                <!-- Testimonial 1 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
-                    <div class="flex items-center">
-                        <div class="text-indigo-500">
-                            <i class="fas fa-quote-left text-3xl"></i>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">"Quivertree Digital transformed our online presence. Their team delivered a beautiful, functional website that has significantly increased our customer engagement and sales."</p>
-                    <div class="mt-6 flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/17.jpg" alt="Sarah Johnson">
-                        </div>
-                        <div class="ml-3">
-                            <h3 class="text-sm font-medium text-gray-900">Sarah Johnson</h3>
-                            <p class="text-sm text-gray-500">CEO, Bloom Retail</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 2 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
-                    <div class="flex items-center">
-                        <div class="text-indigo-500">
-                            <i class="fas fa-quote-left text-3xl"></i>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">"Working with Quivertree Digital was a game-changer for our startup. They built our mobile app from concept to launch in record time, and the results exceeded our expectations."</p>
-                    <div class="mt-6 flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/32.jpg" alt="Michael Chen">
-                        </div>
-                        <div class="ml-3">
-                            <h3 class="text-sm font-medium text-gray-900">Michael Chen</h3>
-                            <p class="text-sm text-gray-500">Founder, HealthTrack</p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Testimonial 3 -->
-                <div class="bg-gray-50 rounded-xl p-6 shadow-sm">
-                    <div class="flex items-center">
-                        <div class="text-indigo-500">
-                            <i class="fas fa-quote-left text-3xl"></i>
-                        </div>
-                    </div>
-                    <p class="mt-4 text-gray-600 italic">"The team at Quivertree Digital understood our complex requirements and delivered a custom software solution that streamlined our operations and reduced costs by 30%."</p>
-                    <div class="mt-6 flex items-center">
-                        <div class="flex-shrink-0">
-                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/63.jpg" alt="Lisa Rodriguez">
-                        </div>
-                        <div class="ml-3">
-                            <h3 class="text-sm font-medium text-gray-900">Lisa Rodriguez</h3>
-                            <p class="text-sm text-gray-500">Operations Director, Nexus Logistics</p>
+                <div class="project">
+                    <div class="project-img"></div>
+                    <div class="project-content">
+                        <h3>Project Management SaaS</h3>
+                        <p>Complete project management solution with task tracking, team collaboration, and reporting tools.</p>
+                        <div class="project-tags">
+                            <span class="tag">Vue.js</span>
+                            <span class="tag">Django</span>
+                            <span class="tag">PostgreSQL</span>
                         </div>
                     </div>
                 </div>
@@ -467,219 +452,88 @@ html body .project-overlay, .project-overlay {
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-gray-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center">
-                <h2 class="text-base font-semibold text-indigo-400 tracking-wide uppercase">Contact Us</h2>
-                <p class="mt-1 text-4xl font-extrabold text-white sm:text-5xl sm:tracking-tight">Get In Touch</p>
-                <p class="max-w-xl mt-5 mx-auto text-xl text-gray-300">Ready to start your next project? Contact us today for a free consultation.</p>
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact Us</h2>
+                <p>Ready to start your next project? Get in touch with us today.</p>
             </div>
-
-            <div class="mt-12 max-w-lg mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-                <form class="py-8 px-8 sm:px-10">
-                    <div class="space-y-6">
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                            <div class="mt-1">
-                                <input id="name" name="name" type="text" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <div class="mt-1">
-                                <input id="email" name="email" type="email" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="message" class="block text-sm font-medium text-gray-700">Message</label>
-                            <div class="mt-1">
-                                <textarea id="message" name="message" rows="4" required class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"></textarea>
-                            </div>
-                        </div>
-
-                        <div>
-                            <button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                                Send Message
-                            </button>
-                        </div>
+            <div class="contact-form">
+                <form>
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" required>
                     </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" required></textarea>
+                    </div>
+                    <button type="submit">Send Message</button>
                 </form>
-            </div>
-
-            <div class="mt-12 grid gap-8 md:grid-cols-3">
-                <!-- Contact method 1 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="text-indigo-400 mb-4">
-                        <i class="fas fa-envelope text-3xl"></i>
-                    </div>
-                    <h3 class="text-lg font-medium text-white">Email</h3>
-                    <p class="mt-2 text-gray-300">info@quivertreedigital.com</p>
-                </div>
-
-                <!-- Contact method 2 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="text-indigo-400 mb-4">
-                        <i class="fas fa-phone text-3xl"></i>
-                    </div>
-                    <h3 class="text-lg font-medium text-white">Phone</h3>
-                    <p class="mt-2 text-gray-300">+1 (555) 123-4567</p>
-                </div>
-
-                <!-- Contact method 3 -->
-                <div class="bg-gray-800 rounded-lg p-6 text-center">
-                    <div class="text-indigo-400 mb-4">
-                        <i class="fas fa-map-marker-alt text-3xl"></i>
-                    </div>
-                    <h3 class="text-lg font-medium text-white">Location</h3>
-                    <p class="mt-2 text-gray-300">San Francisco, CA</p>
-                </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 py-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="md:flex md:items-center md:justify-between">
-                <div class="flex justify-center md:justify-start">
-                    <a href="#" class="text-2xl font-bold text-white">Quivertree Digital</a>
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>Quivertree Digital</h4>
+                    <p>Custom web and software development services that help businesses grow and succeed in the digital world.</p>
                 </div>
-                <div class="mt-8 md:mt-0 flex justify-center space-x-6">
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <span class="sr-only">Facebook</span>
-                        <i class="fab fa-facebook text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <span class="sr-only">Instagram</span>
-                        <i class="fab fa-instagram text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <span class="sr-only">Twitter</span>
-                        <i class="fab fa-twitter text-xl"></i>
-                    </a>
-                    <a href="#" class="text-gray-400 hover:text-white">
-                        <span class="sr-only">LinkedIn</span>
-                        <i class="fab fa-linkedin text-xl"></i>
-                    </a>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#services">Web Development</a></li>
+                        <li><a href="#services">Mobile Development</a></li>
+                        <li><a href="#services">UI/UX Design</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contact</h4>
+                    <ul>
+                        <li>Email: info@quivertreedigital.com</li>
+                        <li>Phone: +1 (555) 123-4567</li>
+                        <li>Address: San Francisco, CA</li>
+                    </ul>
                 </div>
             </div>
-            <div class="mt-8 border-t border-gray-700 pt-8 md:flex md:items-center md:justify-between">
-                <div class="flex justify-center space-x-6 md:order-2">
-                    <a href="#" class="text-sm text-gray-400 hover:text-gray-300">Privacy Policy</a>
-                    <a href="#" class="text-sm text-gray-400 hover:text-gray-300">Terms of Service</a>
-                    <a href="#" class="text-sm text-gray-400 hover:text-gray-300">Cookie Policy</a>
-                </div>
-                <div class="mt-8 md:mt-0 md:order-1">
-                    <p class="text-center text-sm text-gray-400">&copy; 2024 Quivertree Digital. All rights reserved.</p>
-                </div>
+            <div class="copyright">
+                <p>&copy; 2024 Quivertree Digital. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript for functionality -->
     <script>
-        // Smooth scrolling
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu when link is clicked
-                const mobileMenu = document.getElementById('mobileMenu');
-                if (mobileMenu.classList.contains('active')) {
-                    mobileMenu.classList.remove('active');
-                }
-            });
-        });
-        
         // Mobile menu toggle
-        document.getElementById('mobileMenuButton').addEventListener('click', function() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const menu = document.getElementById('menu');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            menu.classList.toggle('active');
         });
         
-        // Animation for timeline items
-        function checkVisibility() {
-            const timelineItems = document.querySelectorAll('.slide-in');
-            timelineItems.forEach(item => {
-                const rect = item.getBoundingClientRect();
-                const isVisible = (rect.top <= window.innerHeight * 0.8);
-                if (isVisible) {
-                    item.classList.add('visible');
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu after clicking a link
+                    menu.classList.remove('active');
                 }
             });
-        }
-        
-        // Check visibility on scroll
-        window.addEventListener('scroll', checkVisibility);
-        
-        // Initial check
-        window.addEventListener('load', checkVisibility);
-        
-        // Apply styles directly via JavaScript as a fallback
-        document.addEventListener('DOMContentLoaded', function() {
-            // Check if CSS is loaded
-            const styleSheets = document.styleSheets;
-            let cssLoaded = false;
-            
-            for (let i = 0; i < styleSheets.length; i++) {
-                if (styleSheets[i].href && styleSheets[i].href.includes('styles.css')) {
-                    cssLoaded = true;
-                    break;
-                }
-            }
-            
-            if (!cssLoaded) {
-                console.log('CSS not loaded, applying fallback styles');
-                
-                // Apply gradient background
-                const gradientBgElements = document.querySelectorAll('.gradient-bg');
-                gradientBgElements.forEach(el => {
-                    el.style.background = 'linear-gradient(90deg, #2563eb, #7c3aed)';
-                });
-                
-                // Apply service card hover effects
-                const serviceCards = document.querySelectorAll('.service-card');
-                serviceCards.forEach(card => {
-                    card.addEventListener('mouseenter', function() {
-                        this.style.transform = 'translateY(-5px)';
-                        this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.1)';
-                        this.style.transition = 'all 0.3s ease';
-                    });
-                    card.addEventListener('mouseleave', function() {
-                        this.style.transform = 'translateY(0)';
-                        this.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                    });
-                });
-                
-                // Handle mobile menu
-                const mobileMenu = document.getElementById('mobileMenu');
-                const mobileMenuButton = document.getElementById('mobileMenuButton');
-                
-                if (mobileMenu && mobileMenuButton) {
-                    mobileMenu.style.display = 'none';
-                    
-                    mobileMenuButton.addEventListener('click', function() {
-                        if (mobileMenu.style.display === 'none') {
-                            mobileMenu.style.display = 'block';
-                            mobileMenu.style.position = 'absolute';
-                            mobileMenu.style.top = '100%';
-                            mobileMenu.style.left = '0';
-                            mobileMenu.style.right = '0';
-                            mobileMenu.style.backgroundColor = 'white';
-                            mobileMenu.style.padding = '1rem';
-                            mobileMenu.style.boxShadow = '0 4px 6px rgba(0, 0, 0, 0.1)';
-                            mobileMenu.style.zIndex = '20';
-                        } else {
-                            mobileMenu.style.display = 'none';
-                        }
-                    });
-                }
-            }
         });
     </script>
 </body>

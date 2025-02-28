@@ -1,21 +1,24 @@
 # Quivertree Digital - Company Website
 
-This repository contains the code for the Quivertree Digital company website, a web and software development company. The site is a single-page website built with:
+This repository contains the code for the Quivertree Digital company website, a web development company. The site is a minimalist single-page website built with:
 
 - HTML5
-- Tailwind CSS (via CDN)
-- Font Awesome icons
-- JavaScript for smooth scrolling
+- CSS3
+- JavaScript
 
 ## Features
 
-- Modern, responsive design
-- Services showcase
-- Project portfolio
-- Development process timeline
-- Client testimonials
+- Clean, minimalist black and white design
+- Responsive layout for all device sizes
+- Services showcase with hover effects
+- Project portfolio with technology tags
 - Contact form
 - Mobile-friendly navigation
+
+## Structure
+
+- Simple, all-in-one HTML file with embedded CSS
+- JavaScript for mobile menu and smooth scrolling
 
 ## Deployment
 
