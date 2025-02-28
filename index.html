@@ -272,7 +272,8 @@
             width: 100%;
             height: 100%;
             z-index: 0;
-            opacity: 0.1;
+            opacity: 0.2; /* Increased opacity for better visibility */
+            pointer-events: none; /* Ensure clicks pass through to elements below */
         }
         
         .section-title {
@@ -1284,16 +1285,31 @@
             updateCarousel();
         }
         
-        // Initialize carousel when DOM is loaded
+        // Initialize carousel and background animations when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, initializing components...');
             initProjectCarousel();
+            
+            // Delay service background initialization slightly to ensure DOM is fully rendered
+            setTimeout(() => {
+                console.log('Initializing services background...');
+                initServicesBackground();
+            }, 300);
+        });
+        
+        // Also initialize on window load to ensure all resources are loaded
+        window.addEventListener('load', function() {
+            console.log('Window loaded, ensuring animations are initialized...');
             initServicesBackground();
         });
         
         // Services Section AI Background Animation
         function initServicesBackground() {
             const canvas = document.getElementById('services-bg-canvas');
-            if (!canvas) return;
+            if (!canvas) {
+                console.error('Services background canvas not found');
+                return;
+            }
             
             const ctx = canvas.getContext('2d');
             const servicesSection = document.getElementById('services');
@@ -1302,16 +1318,17 @@
             function resizeCanvas() {
                 canvas.width = servicesSection.offsetWidth;
                 canvas.height = servicesSection.offsetHeight;
+                console.log('Canvas resized:', canvas.width, 'x', canvas.height);
             }
             
             // Call resize on init and on window resize
-            resizeCanvas();
+            setTimeout(resizeCanvas, 100); // Delay to ensure section is fully rendered
             window.addEventListener('resize', resizeCanvas);
             
             // Create nodes for the network
-            const nodeCount = 100;
+            const nodeCount = 150; // Increased node count for more connections
             const nodes = [];
-            const connectionDistance = 150;
+            const connectionDistance = 200; // Increased connection distance
             
             class Node {
                 constructor() {
@@ -1339,7 +1356,7 @@
                 draw() {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.5)'; // Increased opacity
                     ctx.fill();
                 }
             }
@@ -1351,7 +1368,7 @@
             
             // Draw connections between nodes
             function drawConnections() {
-                ctx.lineWidth = 0.3;
+                ctx.lineWidth = 0.6; // Thicker lines for better visibility
                 
                 for (let i = 0; i < nodes.length; i++) {
                     for (let j = i + 1; j < nodes.length; j++) {
@@ -1361,7 +1378,7 @@
                         
                         if (distance < connectionDistance) {
                             const opacity = 1 - (distance / connectionDistance);
-                            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.3})`;
+                            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.5})`; // Increased opacity
                             ctx.beginPath();
                             ctx.moveTo(nodes[i].x, nodes[i].y);
                             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -1380,8 +1397,20 @@
                     rect.bottom > 0
                 );
                 
+                // Log animation status every 3 seconds (for debugging)
+                if (Date.now() % 3000 < 50) {
+                    console.log('Services animation running, section visible:', isVisible);
+                }
+                
                 if (isVisible) {
                     ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Draw a faint border for debugging purposes
+                    if (window.location.search.includes('debug=true')) {
+                        ctx.strokeStyle = 'rgba(255, 0, 0, 0.3)';
+                        ctx.lineWidth = 1;
+                        ctx.strokeRect(0, 0, canvas.width, canvas.height);
+                    }
                     
                     // Update and draw nodes
                     nodes.forEach(node => {
