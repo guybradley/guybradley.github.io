@@ -29,4 +29,4 @@ The website is deployed using GitHub Pages and can be accessed at the associated
 
 ## License
 
-Copyright © 2024 SoulCountry Digital. All rights reserved.
+Copyright © 2025 SoulCountry Digital. All rights reserved.
