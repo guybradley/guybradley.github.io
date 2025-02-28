@@ -1,17 +1,17 @@
 /* Custom styles for Quivertree Digital */
 
-.gradient-bg {
-    background: linear-gradient(90deg, #2563eb, #7c3aed);
+html body .gradient-bg {
+    background: linear-gradient(90deg, #2563eb, #7c3aed) !important;
 }
 
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
+html body .service-card:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.3s ease !important;
 }
 
-.slide-in {
-    animation: slideIn 0.5s ease-out;
+html body .slide-in {
+    animation: slideIn 0.5s ease-out !important;
 }
 
 @keyframes slideIn {
@@ -21,65 +21,65 @@
 
 /* Mobile menu styles */
 @media (max-width: 768px) {
-    .mobile-menu-button {
-        display: block;
+    html body .mobile-menu-button {
+        display: block !important;
     }
     
-    .mobile-menu {
-        display: none;
+    html body .mobile-menu {
+        display: none !important;
     }
     
-    .mobile-menu.active {
-        display: block;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        background-color: white;
-        padding: 1rem;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        z-index: 20;
+    html body .mobile-menu.active {
+        display: block !important;
+        position: absolute !important;
+        top: 100% !important;
+        left: 0 !important;
+        right: 0 !important;
+        background-color: white !important;
+        padding: 1rem !important;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+        z-index: 20 !important;
     }
 }
 
 /* Hover effects */
-.hover-up {
-    transition: transform 0.3s ease;
+html body .hover-up {
+    transition: transform 0.3s ease !important;
 }
 
-.hover-up:hover {
-    transform: translateY(-5px);
+html body .hover-up:hover {
+    transform: translateY(-5px) !important;
 }
 
 /* Custom button styles */
-.custom-button {
-    transition: all 0.3s ease;
+html body .custom-button {
+    transition: all 0.3s ease !important;
 }
 
-.custom-button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2);
+html body .custom-button:hover {
+    transform: translateY(-2px) !important;
+    box-shadow: 0 4px 12px rgba(79, 70, 229, 0.2) !important;
 }
 
 /* Timeline animation */
-.timeline-item {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.6s ease;
+html body .timeline-item {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    transition: all 0.6s ease !important;
 }
 
-.timeline-item.visible {
-    opacity: 1;
-    transform: translateY(0);
+html body .timeline-item.visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
 }
 
 /* Image overlay effects */
-.project-card:hover .project-overlay {
-    opacity: 1;
+html body .project-card:hover .project-overlay {
+    opacity: 1 !important;
 }
 
-.project-overlay {
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    background: rgba(79, 70, 229, 0.9);
+html body .project-overlay {
+    opacity: 0 !important;
+    transition: opacity 0.3s ease !important;
+    background: rgba(79, 70, 229, 0.9) !important;
 }

@@ -8,7 +8,45 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNCAyNCI+PHBhdGggZmlsbD0iIzRmNDZlNSIgZD0iTTEyIDJsOS41IDUuNXYxMkwxMiAyNWwtOS41LTUuNXYtMTJMMTIgMnptMCAyLjMxMUw0LjUgOC41djdsMy41IDJWMTFsNC01LjUgNC41IDIuNXY3LjVMMjAgMTUuNXYtN0wxMiA0LjMxMXoiLz48L3N2Zz4=">
     <link href="https://cdn.tailwindcss.com" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="./assets/css/styles.css?v=1.0.1">
+    <!-- Fallback styles in case the CSS file doesn't load -->
+    <style>
+        .gradient-bg {
+            background: linear-gradient(90deg, #2563eb, #7c3aed) !important;
+        }
+        .service-card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+            transition: all 0.3s ease !important;
+        }
+        .slide-in {
+            animation: slideIn 0.5s ease-out !important;
+        }
+        @keyframes slideIn {
+            0% { transform: translateY(20px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+        /* Mobile menu styles */
+        @media (max-width: 768px) {
+            .mobile-menu-button {
+                display: block !important;
+            }
+            .mobile-menu {
+                display: none !important;
+            }
+            .mobile-menu.active {
+                display: block !important;
+                position: absolute !important;
+                top: 100% !important;
+                left: 0 !important;
+                right: 0 !important;
+                background-color: white !important;
+                padding: 1rem !important;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1) !important;
+                z-index: 20 !important;
+            }
+        }
+    </style>
 </head>
 <body class="font-sans text-gray-800 antialiased">
     <!-- Header -->
