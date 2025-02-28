@@ -261,11 +261,25 @@
         .services {
             padding: 100px 0;
             background-color: #fff;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .services-bg-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            opacity: 0.1;
         }
         
         .section-title {
             text-align: center;
             margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
         }
         
         .section-title h2 {
@@ -286,6 +300,8 @@
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            position: relative;
+            z-index: 1;
         }
         
         .card {
@@ -742,6 +758,7 @@
 
     <!-- Services Section -->
     <section id="services" class="services">
+        <canvas id="services-bg-canvas" class="services-bg-canvas"></canvas>
         <div class="container">
             <div class="section-title">
                 <h2>Our Services</h2>
@@ -1270,7 +1287,118 @@
         // Initialize carousel when DOM is loaded
         document.addEventListener('DOMContentLoaded', function() {
             initProjectCarousel();
+            initServicesBackground();
         });
+        
+        // Services Section AI Background Animation
+        function initServicesBackground() {
+            const canvas = document.getElementById('services-bg-canvas');
+            if (!canvas) return;
+            
+            const ctx = canvas.getContext('2d');
+            const servicesSection = document.getElementById('services');
+            
+            // Set canvas size to match the services section
+            function resizeCanvas() {
+                canvas.width = servicesSection.offsetWidth;
+                canvas.height = servicesSection.offsetHeight;
+            }
+            
+            // Call resize on init and on window resize
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Create nodes for the network
+            const nodeCount = 100;
+            const nodes = [];
+            const connectionDistance = 150;
+            
+            class Node {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 1 + 0.5;
+                    this.speedX = (Math.random() - 0.5) * 0.3;
+                    this.speedY = (Math.random() - 0.5) * 0.3;
+                }
+                
+                update() {
+                    // Move node
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    // Bounce off edges
+                    if (this.x > canvas.width || this.x < 0) this.speedX *= -1;
+                    if (this.y > canvas.height || this.y < 0) this.speedY *= -1;
+                    
+                    // Keep nodes within canvas
+                    this.x = Math.max(0, Math.min(canvas.width, this.x));
+                    this.y = Math.max(0, Math.min(canvas.height, this.y));
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = 'rgba(0, 0, 0, 0.4)';
+                    ctx.fill();
+                }
+            }
+            
+            // Initialize nodes
+            for (let i = 0; i < nodeCount; i++) {
+                nodes.push(new Node());
+            }
+            
+            // Draw connections between nodes
+            function drawConnections() {
+                ctx.lineWidth = 0.3;
+                
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < connectionDistance) {
+                            const opacity = 1 - (distance / connectionDistance);
+                            ctx.strokeStyle = `rgba(0, 0, 0, ${opacity * 0.3})`;
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                // Only animate if services section is visible
+                const rect = servicesSection.getBoundingClientRect();
+                const isVisible = (
+                    rect.top < window.innerHeight &&
+                    rect.bottom > 0
+                );
+                
+                if (isVisible) {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    
+                    // Update and draw nodes
+                    nodes.forEach(node => {
+                        node.update();
+                        node.draw();
+                    });
+                    
+                    // Draw connections
+                    drawConnections();
+                }
+                
+                requestAnimationFrame(animate);
+            }
+            
+            // Start animation
+            animate();
+        }
         
         // Chat bot functionality
         document.addEventListener('DOMContentLoaded', function() {
