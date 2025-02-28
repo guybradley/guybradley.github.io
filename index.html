@@ -28,12 +28,17 @@
         
         /* Header */
         header {
-            background-color: #fff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            background-color: transparent;
             position: fixed;
             width: 100%;
             top: 0;
             z-index: 100;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+        
+        header.scrolled {
+            background-color: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
         .header-inner {
@@ -46,8 +51,15 @@
         .logo {
             font-weight: bold;
             font-size: 24px;
-            color: #000;
+            color: #fff;
             text-decoration: none;
+            transition: color 0.3s;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        header.scrolled .logo {
+            color: #000;
+            text-shadow: none;
         }
         
         nav ul {
@@ -61,12 +73,20 @@
         
         nav ul li a {
             text-decoration: none;
-            color: #333;
+            color: rgba(255, 255, 255, 0.9);
             font-weight: 500;
             transition: color 0.3s;
         }
         
+        header.scrolled nav ul li a {
+            color: #333;
+        }
+        
         nav ul li a:hover {
+            color: #fff;
+        }
+        
+        header.scrolled nav ul li a:hover {
             color: #000;
         }
         
@@ -74,34 +94,70 @@
         .hero {
             padding: 150px 0 100px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+            color: #fff;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+        
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: 0;
+            object-fit: cover;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
         }
         
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
-            color: #000;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
         
         .hero p {
             font-size: 18px;
             max-width: 600px;
             margin: 0 auto 30px;
-            color: #555;
+            color: rgba(255, 255, 255, 0.9);
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
         }
         
         .btn {
             display: inline-block;
-            background-color: #000;
-            color: #fff;
+            background-color: #fff;
+            color: #000;
             padding: 12px 30px;
             border-radius: 4px;
             text-decoration: none;
             font-weight: 500;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
         }
         
         .btn:hover {
-            background-color: #333;
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
         
         /* Services section */
@@ -306,10 +362,15 @@
             display: none;
             background: none;
             border: none;
-            color: #000;
+            color: #fff;
             font-size: 24px;
             cursor: pointer;
             padding: 5px;
+            transition: color 0.3s;
+        }
+        
+        header.scrolled .mobile-menu-btn {
+            color: #000;
         }
         
         /* Responsive styles */
@@ -324,9 +385,15 @@
                 top: 100%;
                 left: 0;
                 width: 100%;
-                background-color: #fff;
+                background-color: rgba(0, 0, 0, 0.9);
                 flex-direction: column;
                 padding: 20px;
+                box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+                transition: background-color 0.3s;
+            }
+            
+            header.scrolled nav ul {
+                background-color: rgba(255, 255, 255, 0.95);
                 box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             }
             
@@ -372,10 +439,17 @@
 
     <!-- Hero Section -->
     <section class="hero">
+        <video class="hero-video" autoplay muted loop playsinline>
+            <source src="video/kokerboom.mp4" type="video/mp4">
+            <!-- Fallback for browsers that don't support video -->
+            Your browser does not support the video tag.
+        </video>
         <div class="container">
-            <h1>Web Development Solutions</h1>
-            <p>Custom software and web development services tailored to your business needs. We build elegant, functional solutions that help you grow.</p>
-            <a href="#contact" class="btn">Get Started</a>
+            <div class="hero-content">
+                <h1>Web Development Solutions</h1>
+                <p>Custom software and web development services tailored to your business needs. We build elegant, functional solutions that help you grow.</p>
+                <a href="#contact" class="btn">Get Started</a>
+            </div>
         </div>
     </section>
 
@@ -513,9 +587,26 @@
         // Mobile menu toggle
         const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
         const menu = document.getElementById('menu');
+        const header = document.querySelector('header');
         
         mobileMenuBtn.addEventListener('click', function() {
             menu.classList.toggle('active');
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+        
+        // Initialize header state on page load
+        window.addEventListener('load', function() {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            }
         });
         
         // Smooth scrolling for navigation links
@@ -535,6 +626,21 @@
                 }
             });
         });
+        
+        // Make sure video plays on mobile devices
+        const video = document.querySelector('.hero-video');
+        if (video) {
+            // Some browsers require user interaction to start videos
+            // This is a workaround to try to ensure the video plays
+            document.addEventListener('touchstart', function() {
+                video.play();
+            }, { once: true });
+            
+            // Another attempt to ensure video plays
+            setTimeout(function() {
+                video.play();
+            }, 1000);
+        }
     </script>
 </body>
 </html>
