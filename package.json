@@ -1,0 +1,13 @@
+{
+  "name": "soulcountry-digital",
+  "version": "1.0.0",
+  "description": "SoulCountry Digital Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "author": "SoulCountry Digital",
+  "license": "MIT",
+  "dependencies": {}
+}
