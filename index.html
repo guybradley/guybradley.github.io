@@ -2007,15 +2007,17 @@
                     userInput.disabled = true;
                     sendButton.disabled = true;
                     
-                    // Show a message about processing the data
+                    // Show a message about sending the data
                     setTimeout(function() {
-                        addBotMessage("Processing your information through our AI assistant to provide better service...");
-                        
-                        // Send data to an LLM API for analysis
-                        processDataWithLLM(userData);
+                        addBotMessage("Thank you for your information. We're sending your request to our team now...");
                         
                         // Send data to our email endpoint
                         sendContactFormToEmail(userData);
+                        
+                        // Show final confirmation message after a delay
+                        setTimeout(function() {
+                            addBotMessage("Your information has been sent successfully! Someone from our team will contact you at " + userData.email + " soon.");
+                        }, 2000);
                     }, 1000);
                 }
             }
@@ -2035,143 +2037,9 @@
                 });
             }
             
-            // Function to process data through an LLM API 
-            function processDataWithLLM(userData) {
-                // Construct the prompt for the LLM
-                const prompt = `
-                    Analyze this potential client inquiry:
-                    Name: ${userData.name}
-                    Email: ${userData.email}
-                    Project Description: ${userData.project}
-                    Additional Details: ${userData.details}
-                    Additional Info: ${userData.additional || "None provided"}
-                    
-                    Based on this information:
-                    1. What type of project is this client likely looking for?
-                    2. What level of complexity does this project seem to have (low, medium, high)?
-                    3. What services would be most relevant to offer?
-                    4. What are 2-3 potential challenges or considerations for this project?
-                    5. What might be an appropriate budget range to suggest in South African Rand (ZAR)?
-                    
-                    Format your response as a concise client brief without mentioning that you're an AI.
-                `;
-                
-                // Call our secure backend API instead of directly calling Claude
-                fetch('/api/claude', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        userData: userData,
-                        prompt: prompt
-                    })
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`API request failed with status ${response.status}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Display the Claude analysis from our API
-                    if (data && data.content && data.content.length > 0) {
-                        const content = data.content[0].text;
-                        displayLLMInsights(content);
-                    } else {
-                        throw new Error('Unexpected API response format');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error with Claude API:', error);
-                    // Fall back to simulation if the API call fails
-                    console.log('Falling back to simulation...');
-                    simulateLLMResponse(userData);
-                });
-                
-                // To use only the simulation (for testing without API calls):
-                // simulateLLMResponse(userData);
-            }
+            // We've removed the AI/LLM processing functions as they're no longer needed
             
-            // Function to simulate LLM response (for demo only)
-            function simulateLLMResponse(userData) {
-                // Wait time to simulate API call
-                setTimeout(function() {
-                    // Generate a simple analysis based on the user data
-                    let projectType = "web development";
-                    let complexity = "medium";
-                    let services = ["custom website design", "responsive development"];
-                    let challenges = ["timeline constraints", "integration requirements"];
-                    let budgetRange = "R25,000 - R45,000";
-                    
-                    // Basic keyword matching to customize the response
-                    if (userData.project.toLowerCase().includes("app") || 
-                        userData.project.toLowerCase().includes("mobile")) {
-                        projectType = "mobile application";
-                        complexity = "high";
-                        services = ["native app development", "UX/UI design", "backend integration"];
-                        budgetRange = "R60,000 - R120,000";
-                    }
-                    
-                    if (userData.project.toLowerCase().includes("ecommerce") || 
-                        userData.project.toLowerCase().includes("shop") ||
-                        userData.project.toLowerCase().includes("store")) {
-                        projectType = "e-commerce platform";
-                        services = ["online store setup", "payment gateway integration", "inventory management"];
-                        budgetRange = "R40,000 - R80,000";
-                    }
-                    
-                    // Generate the analysis
-                    const analysis = `
-                        ## Client Brief for ${userData.name}
-                        
-                        **Project Type:** ${projectType}
-                        **Complexity Level:** ${complexity}
-                        
-                        **Recommended Services:**
-                        ${services.map(s => `- ${s}`).join('\n')}
-                        
-                        **Key Considerations:**
-                        ${challenges.map(c => `- ${c}`).join('\n')}
-                        
-                        **Suggested Budget Range:** ${budgetRange}
-                        
-                        Our team will reach out to ${userData.email} within 1-2 business days to discuss this project in more detail.
-                    `;
-                    
-                    // Display the simulated insights
-                    displayLLMInsights(analysis);
-                }, 3000);
-            }
-            
-            // Function to display LLM insights
-            function displayLLMInsights(analysisText) {
-                // Format the analysis (convert markdown-like syntax to HTML)
-                analysisText = analysisText
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\n/g, '<br>')
-                    .replace(/##(.*?)$/gm, '<h4>$1</h4>')
-                    .replace(/- (.*?)$/gm, '• $1');
-                
-                // Create a special message for the AI analysis
-                const analysisMessage = document.createElement('div');
-                analysisMessage.className = 'chat-message bot-message ai-analysis';
-                analysisMessage.innerHTML = analysisText;
-                analysisMessage.style.backgroundColor = '#f0f0f0';
-                analysisMessage.style.border = '1px solid #ddd';
-                analysisMessage.style.borderRadius = '4px';
-                analysisMessage.style.padding = '15px';
-                analysisMessage.style.marginTop = '10px';
-                
-                // Add the analysis to the chat
-                chatBody.appendChild(analysisMessage);
-                chatBody.scrollTop = chatBody.scrollHeight;
-                
-                // Final thank you message
-                setTimeout(function() {
-                    addBotMessage("We've analyzed your project needs and will use this information to better serve you. Thank you for reaching out to SoulCountry Digital!");
-                }, 2000);
-            }
+            // We've removed the AI analysis display function as it's no longer needed
             
             // Function to send contact form data to email endpoint
             function sendContactFormToEmail(userData) {
