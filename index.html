@@ -264,47 +264,136 @@
             background-color: #fff;
         }
         
-        .contact-form {
+        .chat-container {
             max-width: 600px;
             margin: 0 auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
-        .form-group {
-            margin-bottom: 20px;
+        .chat-header {
+            background-color: #000;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
         }
         
-        label {
-            display: block;
-            margin-bottom: 5px;
+        .chat-header-dot {
+            height: 10px;
+            width: 10px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            margin-right: 10px;
+        }
+        
+        .chat-body {
+            height: 400px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .chat-message {
+            max-width: 80%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            font-size: 16px;
+            animation: fadeIn 0.3s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .bot-message {
+            background-color: #e9e9e9;
             color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 0;
         }
         
-        input, textarea {
-            width: 100%;
-            padding: 10px;
+        .user-message {
+            background-color: #000;
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 0;
+        }
+        
+        .chat-input {
+            display: flex;
+            padding: 15px;
+            background-color: #fff;
+            border-top: 1px solid #eee;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            padding: 12px 15px;
             border: 1px solid #ddd;
             border-radius: 4px;
             font-family: inherit;
             font-size: 16px;
         }
         
-        textarea {
-            height: 150px;
+        .chat-input input:focus {
+            outline: none;
+            border-color: #000;
         }
         
-        button {
+        .chat-input button {
             background-color: #000;
             color: #fff;
             border: none;
-            padding: 12px 30px;
+            padding: 12px 20px;
+            margin-left: 10px;
             border-radius: 4px;
             cursor: pointer;
             font-weight: 500;
             transition: background-color 0.3s;
         }
         
-        button:hover {
+        .chat-input button:hover {
             background-color: #333;
+        }
+        
+        .chat-input button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        
+        .typing-indicator {
+            display: flex;
+            padding: 12px 15px;
+            background-color: #e9e9e9;
+            border-radius: 10px;
+            align-self: flex-start;
+            margin-bottom: 15px;
+            border-bottom-left-radius: 0;
+        }
+        
+        .typing-dot {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            background-color: #666;
+            margin: 0 2px;
+            animation: typingAnimation 1s infinite ease-in-out;
+        }
+        
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes typingAnimation {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
         }
         
         /* Footer */
@@ -530,24 +619,20 @@
         <div class="container">
             <div class="section-title">
                 <h2>Contact Us</h2>
-                <p>Ready to start your next project? Get in touch with us today.</p>
+                <p>Ready to start your next project? Chat with our bot to get started.</p>
             </div>
-            <div class="contact-form">
-                <form>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" required></textarea>
-                    </div>
-                    <button type="submit">Send Message</button>
-                </form>
+            <div class="chat-container">
+                <div class="chat-header">
+                    <div class="chat-header-dot"></div>
+                    <span>SoulCountry Bot</span>
+                </div>
+                <div id="chatBody" class="chat-body">
+                    <!-- Chat messages will be added here -->
+                </div>
+                <div class="chat-input">
+                    <input type="text" id="userInput" placeholder="Type your message..." aria-label="Type your message">
+                    <button id="sendButton">Send</button>
+                </div>
             </div>
         </div>
     </section>
@@ -641,6 +726,114 @@
                 video.play();
             }, 1000);
         }
+        
+        // Chat bot functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatBody = document.getElementById('chatBody');
+            const userInput = document.getElementById('userInput');
+            const sendButton = document.getElementById('sendButton');
+            
+            // Chat sequence steps
+            const chatSequence = [
+                { question: "Hi there! 👋 I'm the SoulCountry Digital assistant. What's your name?", field: "name" },
+                { question: "Nice to meet you, {name}! Could you share your email address so we can get back to you?", field: "email" },
+                { question: "Thanks! What kind of project are you interested in discussing?", field: "project" },
+                { question: "That sounds interesting! Any specific timeline or budget considerations for your {project} project?", field: "details" },
+                { question: "Perfect! Thanks for sharing all this information, {name}. Our team will review your request and get back to you at {email} soon. Is there anything else you'd like to add?", field: "additional" },
+                { question: "Thank you for reaching out to SoulCountry Digital! We're excited about the possibility of working with you. Someone from our team will be in touch within 1-2 business days.", field: null }
+            ];
+            
+            let currentStep = 0;
+            const userData = {};
+            
+            // Start the chat sequence when page loads
+            window.addEventListener('load', function() {
+                setTimeout(function() {
+                    addBotMessage(chatSequence[0].question);
+                }, 1000);
+            });
+            
+            // Add a bot message to the chat
+            function addBotMessage(message) {
+                // Replace placeholders with user data
+                for (const [key, value] of Object.entries(userData)) {
+                    message = message.replace(`{${key}}`, value);
+                }
+                
+                // Show typing indicator
+                const typingIndicator = document.createElement('div');
+                typingIndicator.className = 'typing-indicator';
+                for (let i = 0; i < 3; i++) {
+                    const dot = document.createElement('div');
+                    dot.className = 'typing-dot';
+                    typingIndicator.appendChild(dot);
+                }
+                chatBody.appendChild(typingIndicator);
+                chatBody.scrollTop = chatBody.scrollHeight;
+                
+                // After a delay, remove typing indicator and add the actual message
+                setTimeout(function() {
+                    chatBody.removeChild(typingIndicator);
+                    
+                    const botMessage = document.createElement('div');
+                    botMessage.className = 'chat-message bot-message';
+                    botMessage.textContent = message;
+                    chatBody.appendChild(botMessage);
+                    chatBody.scrollTop = chatBody.scrollHeight;
+                }, 1500);
+            }
+            
+            // Add a user message to the chat
+            function addUserMessage(message) {
+                const userMessage = document.createElement('div');
+                userMessage.className = 'chat-message user-message';
+                userMessage.textContent = message;
+                chatBody.appendChild(userMessage);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }
+            
+            // Process user input and advance in the sequence
+            function processInput() {
+                const message = userInput.value.trim();
+                if (message === '') return;
+                
+                // Add user message to chat
+                addUserMessage(message);
+                userInput.value = '';
+                
+                // Save user input to the appropriate field
+                if (currentStep < chatSequence.length && chatSequence[currentStep].field) {
+                    userData[chatSequence[currentStep].field] = message;
+                }
+                
+                // Move to the next step
+                currentStep++;
+                
+                // If there are more steps, show the next bot message after a short delay
+                if (currentStep < chatSequence.length) {
+                    setTimeout(function() {
+                        addBotMessage(chatSequence[currentStep].question);
+                    }, 1000);
+                } else {
+                    // If we've reached the end, disable the input
+                    userInput.disabled = true;
+                    sendButton.disabled = true;
+                    
+                    // In a real implementation, you would submit the user data to a server here
+                    console.log('Form data collected:', userData);
+                }
+            }
+            
+            // Handle send button click
+            sendButton.addEventListener('click', processInput);
+            
+            // Handle enter key press
+            userInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    processInput();
+                }
+            });
+        });
     </script>
 </body>
 </html>
