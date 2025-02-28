@@ -1,28 +1,26 @@
-# Play - Free Tailwind CSS Template for Startup, Apps and SaaS
+# Quivertree Digital - Company Website
 
-Play is an open-source and free Tailwind CSS template co-created by TailGrids and UIdeck. This template specially crafted for SaaS, startup, business and software website.
-Play crafted in a way that you can use with almost all sort of web project. This is Tailwind CSS template built using [TailGrids](https://tailgrids.com/) components.
+This repository contains the code for the Quivertree Digital company website, a web and software development company. The site is a single-page website built with:
 
-### This template crafted using 🥞 [TailGrids](https://tailgrids.com/) UI components
+- HTML5
+- Tailwind CSS (via CDN)
+- Font Awesome icons
+- JavaScript for smooth scrolling
 
-### [🚀 View Demo](https://play-tailwind.tailgrids.com/)
+## Features
 
-### [⬇️ Download Now](https://links.tailgrids.com/play-download)
+- Modern, responsive design
+- Services showcase
+- Project portfolio
+- Development process timeline
+- Client testimonials
+- Contact form
+- Mobile-friendly navigation
 
-[![play-tailwind](https://cdn.tailgrids.com/play-tailwind.jpg)](https://play-tailwind.tailgrids.com/)
+## Deployment
 
-## 📃 License
+The website is deployed using GitHub Pages and can be accessed at the associated domain.
 
-Play is an open-source template, you can use it with your personal or commercial projects without any attribution or backlink.
+## License
 
-## 💙 Support
-
-You can always support this project by [Starring🌟 This Repository](https://github.com/tailgrids/play-tailwind)
-and sharing with friends. Also open an issue if you find bug or feel free to contribute by pull requests after fixing any issue or adding more values.
-
-### Update Logs: 2.0 - Nov 2023
-- Design refresh
-- New marketing section
-- Dark mode support
-- Code and performance optimization
-- Updated dependencies
+Copyright © 2024 Quivertree Digital. All rights reserved.
